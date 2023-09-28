@@ -18,12 +18,12 @@ const userSchema = new Schema({
         lowercase:true,
         trim:true,
         unique:true,
-        match:['^(?:(?!.*?[.]{2})[a-zA-Z0-9](?:[a-zA-Z0-9.+!%-]{1,64}|)|\"[a-zA-Z0-9.+!% -]{1,64}\")@[a-zA-Z0-9][a-zA-Z0-9.-]+(.[a-z]{2,}|.[0-9]{1,})$','Please fill in a valid email address']
+        match:[/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,'Please fill in a valid email address']
     },
     password:{
         type:String,
         required:[true,'Password is required'],
-        minLength:[8,'Password must be atleast 8 character'],
+        minLength:[6,'Password must be atleast 6 character'],
         select : false
     },
 

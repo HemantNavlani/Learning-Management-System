@@ -7,13 +7,14 @@ import sendEmail from '../utils/sendEmail.js'
 import crypto from 'crypto'
 
 
-const  cokokieOptions = {
+const  cookieOptions = {
     maxAge : 7*24*60*60*1000,//7days
     httpOnly:true,
     secure: true
 }
 
 const register = async (req,res,next)=>{
+    // console.log(upload);
     const {fullName,email,password}  = req.body;
     if (!fullName || !email || !password){
         return next(new AppError('All Fields are required',400))
@@ -31,7 +32,7 @@ const register = async (req,res,next)=>{
         password,
         avatar:{
             public_id:email,
-            secure_url:'https://res.cloudinary.com.du9jzqlpt/image/upload'
+            secure_url:'https://res.cloudinary.com/du9jzqlpt/image/upload/v1674647316/avatar_drzgxv.jpg'
         }
     })
 
@@ -40,10 +41,10 @@ const register = async (req,res,next)=>{
     }
 
     //File upload
-    console.log('File details ->' ,JSON.stringify(req.file))
+    console.log('File details1->' ,JSON.stringify(req.file))
     if (req.file){
-       
         try{
+            console.log('File details2 ->' ,JSON.stringify(req.file))
             const result = await cloudinary.v2.uploader.upload(req.file.path,{
                 folder:'lms',
                 width: 250,
@@ -51,16 +52,21 @@ const register = async (req,res,next)=>{
                 gravity:'faces',
                 crop:'fill'
             })
-            
+
+
+
+            console.log('File details3 ->' ,JSON.stringify(req.file))
             if (result){
                 user.avatar.public_id = result.public_id;
                 user.avatar.secure_url = result.secure_url;
-
+                
                 //remove file from server
                 fs.rm(`uploads/${req.file.filename}`)
             }
+            console.log('File details4 ->' ,JSON.stringify(req.file))
         }catch(e){
-            return next(new AppError(error || 'File Not uploaded, please try again',500))
+            console.log('xsx\n\n',e)
+            return next(new AppError(e || 'File Not uploaded, please try again',500))
         }
 
     }
@@ -68,16 +74,17 @@ const register = async (req,res,next)=>{
     await user.save();
 
 
-    user.password = undefined;
-
     const token = await user.generateJWTToken();
+    user.password = undefined;
+ 
+    res.cookie('token',token,cookieOptions);
+
     res.status(201).json({
         success:true,
         message:'User Registered Successfully',
         user
     })
-
-    res.cookie('token',token, cookieOptions)
+    
 }
 
 const login = async(req,res,next)=>{

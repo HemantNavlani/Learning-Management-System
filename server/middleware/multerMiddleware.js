@@ -1,17 +1,16 @@
 import path from 'path'
 
 import multer from 'multer'
-
 const upload = multer ({
     dest :'uploads/',
     limits:{fieldSize: 50*1024*1024}, //50 mb in size max limit 
     storage: multer.diskStorage({
         destination: 'uploads/',
         filename: (_req,file, cb)=>{
-            cb(bull,file.originalname);
+            cb(null,file.originalname);
         },
     }),
-    fileFilter : (_req,file,cb)=>{
+        fileFilter : (_req,file,cb)=>{
         let ext = path.extname(file.originalname)
 
         if (
@@ -29,3 +28,6 @@ const upload = multer ({
 })
 
 export default upload;
+
+
+

@@ -5,11 +5,11 @@ import {config} from 'dotenv'
 config()
 
 import cors from 'cors';
+
 app.use(cors({
     origin:[process.env.FRONTEND_URL],
     credentials:true
 }))
-
 import  cookieParser from 'cookie-parser';
 app.use(cookieParser());
 
