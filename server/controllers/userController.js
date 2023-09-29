@@ -117,12 +117,12 @@ const logout = (req,res)=>{
         maxAge:0,
         httpOnly:true
     })
-
     res.status(200).json({
         success:true,
         message:'User logged out successfully'
     })
 }
+
 
 const getProfile = async(req,res)=>{
     try{
