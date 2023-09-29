@@ -5,8 +5,6 @@ import fs from 'fs/promises'
 import { nextTick } from "process";
 import sendEmail from '../utils/sendEmail.js'
 import crypto from 'crypto'
-
-
 const  cookieOptions = {
     maxAge : 7*24*60*60*1000,//7days
     httpOnly:true,
@@ -89,9 +87,8 @@ const login = async(req,res,next)=>{
             return next(new AppError('All fields are required',400))
         }
     
-        const user = await User.findOne({email}).select('+password')
-    
-        if (!user || !(user.comparePassword(password))){
+        const user = await User.findOne({email}).select('+password');
+        if (!user || !await(user.comparePassword(password))){
             return next(new AppError('Email or password does not match',400))
         }
     
