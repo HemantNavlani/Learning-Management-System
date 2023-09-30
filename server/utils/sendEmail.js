@@ -1,4 +1,3 @@
-import e from 'express'
 import nodemailer from 'nodemailer'
 
 //async await is not allowed in global scope, must use a wrapper
@@ -18,7 +17,7 @@ const sendEmail = async function(email,subject,message){
 
 //send email with well defined transport object
 
-await transport.sendEmail({
+await transporter.sendMail({
     from :process.env.SMTP_FROM_EMAIL,//sender address
     to:email,//user email
     subject:subject,//subject line,
