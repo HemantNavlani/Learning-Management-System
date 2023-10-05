@@ -121,19 +121,22 @@ const logout = (req,res)=>{
 }
 
 
-const getProfile = async(req,res)=>{
-    try{
+const getProfile = async(req,res,next)=>{
+    // try{
         const userId = req.user.id;
-        const user = await User.findOne(userId)
-
+        console.log(userId)
+        const user = await User.findById(userId);
+      
         res.status(200).json({
             success:true,
             message:"User Details",
             user
         })
-    }catch(e){
-        return next(new AppError('Failed to fetch profile detail',500))
-    }
+    // }catch(e){
+        // return next(
+            // new AppError('Failed to fetch profile detail',500)
+        // );
+    // }
 }
 
 
@@ -237,13 +240,15 @@ const changePassword = async(req,res)=>{
     })
 }
 
-const updateUser = async(req,res)=>{
-    const {fullName} = req.body;
-    const {id} = req.user.id;
+const updateUser = async(req,res,next)=>{
 
-    const user = await User.findById(id);
+    const {fullName} = req.body;
+    const userId = req.user.id;
+    const user = await User.findById(userId);
     if (!user){
-        return next(new AppError('User does not exist',400))
+        return next(
+            new AppError('User does not exist',400)
+        );
     }
 
     if (req.fullName){
@@ -270,7 +275,7 @@ const updateUser = async(req,res)=>{
                 fs.rm(`uploads/${req.file.filename}`)
             }
         }catch(e){
-            return next(new AppError(error || 'File Not uploaded, please try again',500))
+            return next(new AppError(error || 'File Not uploaded, please try again',400))
         }
 
     }
