@@ -15,6 +15,8 @@ import NotFound from './Pages/NotFound'
 import Signup from './Pages/Signup'
 import EditProfile from './Pages/User/EditProfile'
 import Profile from './Pages/User/Profile'
+import Checkout from './Pages/Payment/Checkout'
+import CheckoutSuccess from './Pages/Payment/CheckoutSuccess'
 function App() {
 
   return (
@@ -38,6 +40,9 @@ function App() {
       <Route element={<RequireAuth allowedRoles={["ADMIN","USER"]}/>}>
       <Route path='/user/profile' element={<Profile/>} />
       <Route path='/user/editprofile' element={<EditProfile/>} />
+      <Route path='/checkout' element={<Checkout/>} />
+      <Route path='/checkout/success' element={<CheckoutSuccess/>} />
+
       </Route>
       <Route path='*' element={<NotFound/>} ></Route>
     </Routes>

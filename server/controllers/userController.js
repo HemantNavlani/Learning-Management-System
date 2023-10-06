@@ -122,9 +122,8 @@ const logout = (req,res)=>{
 
 
 const getProfile = async(req,res,next)=>{
-    // try{
+    try{
         const userId = req.user.id;
-        console.log(userId)
         const user = await User.findById(userId);
       
         res.status(200).json({
@@ -132,11 +131,11 @@ const getProfile = async(req,res,next)=>{
             message:"User Details",
             user
         })
-    // }catch(e){
-        // return next(
-            // new AppError('Failed to fetch profile detail',500)
-        // );
-    // }
+    }catch(e){
+        return next(
+            new AppError('Failed to fetch profile detail',500)
+        );
+    }
 }
 
 

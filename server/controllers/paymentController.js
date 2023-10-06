@@ -2,11 +2,12 @@ import Payment from "../models/paymentModel.js";
 import User from "../models/userModel.js";
 import { razorpay } from "../server.js";
 import AppError from "../utils/error.util.js";
+import crypto from 'crypto';
 
 export const getRazorpayApiKey = async(req,res,next)=>{
 
     try{
-        res.staus(200).json({
+        res.status(200).json({
             success:true,
             message:'Razorpay API Key',
             key:process.env.RAZORPAY_KEY_ID
@@ -21,7 +22,8 @@ export const getRazorpayApiKey = async(req,res,next)=>{
 export const buySubscription = async(req,res,next)=>{
     try{
         const {id} = req.user;
-    const user = await User.findById(id);
+        const user = await User.findById(id);
+  
     if (!user){
         return next(new AppError('Unauthorized, Please Login',400))
     }
@@ -31,8 +33,9 @@ export const buySubscription = async(req,res,next)=>{
     }
 
     const subscription = await razorpay.subscriptions.create({
-        plan_id:process.env.RAZORPAY_PLAN_ID,
-        customer_notify:1
+        plan_id : process.env.RAZORPAY_PLAN_ID,
+        customer_notify: 1, 
+        total_count: 12
     });
 
     user.subscription.id = subscription.id;
@@ -47,7 +50,7 @@ export const buySubscription = async(req,res,next)=>{
     })
     }
     catch(e){
-        return next(new AppError(e,message,500))
+        return next(new AppError(e.message,500))
     }
 }
 
