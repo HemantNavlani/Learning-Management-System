@@ -38,6 +38,8 @@ export const buySubscription = async(req,res,next)=>{
         total_count: 12
     });
 
+
+
     user.subscription.id = subscription.id;
     user.subscription.status = subscription.status;
 
@@ -82,9 +84,8 @@ export const verifySubscription = async(req,res,next)=>{
     })
 
     user.subscription.status = 'active'
-
+    
     await user.save()
-
     res.status(200).json({
         success:true,
         message:'Payment Verified Successfully'
@@ -105,18 +106,14 @@ export const cancelSubscription = async(req,res,next)=>{
     }
 
     if (user.role === 'ADMIN'){
-        return next (new AppError('Admin cannot purchase a subscription',400))
+        return next (new AppError('Admin cannot cancel a subscription',400))
     }
 
     const subscriptionId = user.subscription.id;
 
-    const subscription = await razorpay.subscriptions.cancel(
-        subscriptionId
-    )
-
+    const subscription = await razorpay.subscriptions.cancel(subscriptionId)
     user.subscription.status = subscription.status
-
-    await user.save()
+    await user.save();
   }
   catch(e){
     return next(new AppError(e.message,500))

@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { getRazorPayId, purchaseCourseBundle, verifyUserPayment } from "../../Redux/Slices/RazorPaySlice";
 
+
 function Checkout(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const razorpaykey = useSelector((state)=> state?.razorpay?.key);
     const subscription_id = useSelector((state)=> state?.razorpay?.subscription_id);
-    const userData = useSelector((state)=>state?.auth?.data)
-    const isPaymentVerified = useSelector((state)=>state?.razorpay?.isPaymentVerified)
+    // const userData = useSelector((state)=>state?.auth?.data)
+    // const isPaymentVerified = useSelector((state)=>state?.razorpay?.isPaymentVerified)
 
     const paymentDetails = {
         razorpay_payment_id : "",
@@ -35,10 +36,10 @@ function Checkout(){
             theme:{
                 color:'#f37254'
             },
-            prefill:{
-                email:userData.email,
-                name:userData.fullName
-            },
+            // prefill:{
+            //     email:userData.email,
+            //     name:userData.fullName
+            // },
             handler: async function (response){
                 paymentDetails.razorpay_payment_id=response.razorpay_payment_id;
                 paymentDetails.razorpay_signature = response.razorpay_signature;
