@@ -27,16 +27,32 @@ const authorizedRoles = (...roles) => async(req,res,next)=>{
     next();
 }
 
-const authorizedSubscriber = async(req,res,next)=>{
-    const user = await User.findById(req.user.id);
-    const subscription = user.subscription;
-    const currentUserRole = user.role;
+// const authorizedSubscriber = async(req,res,next)=>{
+//     const user = await User.findById(req.user.id);
+//     const subscription = user.subscription;
+//     const currentUserRole = user.role;
 
-    if (currentUserRole !=='ADMIN' && subscription.status !=='active'){
-        return next(new AppError('Please Subscribe to access this route',403))
+//     if (currentUserRole !=='ADMIN' && subscription.status !=='active'){
+//         return next(new AppError('Please Subscribe to access this route',403))
+//     }
+//     next();
+// }
+const authorizedSubscriber = async (req, _res, next) => {
+    const user = await User.findById(req.user.id);
+    // console.log(user)
+    // If user is not admin or does not have an active subscription then error else pass
+
+
+    //user and //active
+    // console.log(user.role)
+    // console.log(user.subscription.status)
+    if (user.role !== "ADMIN" && user.subscription.status !== "active") {
+      return next(new AppError("Please subscribe to access this route.", 403));
     }
+  
     next();
-}
+  };
+  
 export{
     isLoggedIn,
     authorizedRoles,
