@@ -22,7 +22,7 @@ export const getCourseLectures = createAsyncThunk("/course/lecture/get",async(ci
 })
 
 
-export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete",async(data)=>{
+export const addCourseLecture  = createAsyncThunk("/course/lecture/add",async(data)=>{
     try{
         const formData = new FormData();
         formData.append("lecture",data.lecture);
@@ -44,7 +44,7 @@ export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete",asy
 })
 
 
-export const addCourseLecture = createAsyncThunk("/course/lecture/add",async(data)=>{
+export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete",async(data)=>{
     try{
         const response = axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
         toast.promise(response,{

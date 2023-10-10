@@ -1,11 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import HomeLayout from "../../Layouts/HomeLayout";
 import { createNewCourse } from "../../Redux/Slices/CourseSlice";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 
 function CreateCourse(){
     const dispatch = useDispatch();

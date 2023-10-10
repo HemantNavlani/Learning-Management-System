@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
+import CourseCard from "../../Components/CourseCard";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { getAllCourses } from "../../Redux/Slices/CourseSlice";
-import CourseCard from "../../Components/CourseCard";
 
 function CourseList(){
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function CourseList(){
         <HomeLayout>
             <div className="min-h-[90vh] pt-12 pl-20 flex flex-col gap-10 text-white">
                 <h1 className="text-center text-3xl font-semibold mb-5">
-                    Explore the courses made by
+                    Explore the courses made by {" "}
                     <span className="font-bold text-yellow-500">Industry Experts</span>
                     </h1>
                     <div className="mb-10 flex flex-wrap gap-14">
