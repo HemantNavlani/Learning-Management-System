@@ -24,10 +24,10 @@ router.route('/:id')
     authorizedRoles('ADMIN'),//authorization
     updateCourse
     )
-// .delete(
-//     isLoggedIn,//authentication
-//     authorizedRoles('ADMIN'),//authorization
-//     removeCourse)
+.delete(
+    isLoggedIn,//authentication
+    authorizedRoles('ADMIN'),//authorization
+    removeCourse)
 
 
 .post(

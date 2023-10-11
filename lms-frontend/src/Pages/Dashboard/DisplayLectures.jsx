@@ -18,7 +18,8 @@ function DisplayLectures(){
     async function onLectureDelete(courseId,lectureId){
         await dispatch(deleteCourseLecture({courseId:courseId,lectureId:lectureId}))
         await getCourseLectures(courseId);
-        window.location.reload();
+        navigate(0)
+        // window.location.reload();
     }
     useEffect(() => {
         console.log(state);

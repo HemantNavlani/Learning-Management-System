@@ -1,5 +1,4 @@
-import asyncHandler from '../middleware/asyncMiddleware.js';
-// import User from '../models/userModel.js';
+import User from '../models/userModel.js';
 import AppError from '../utils/error.util.js';
 import sendEmail from '../utils/sendEmail.js';
 
@@ -34,7 +33,7 @@ export const contactUs = async (req, res, next) => {
  * @ROUTE @GET {{URL}}/api/v1/admin/stats/users
  * @ACCESS Private(ADMIN ONLY)
  */
-export const userStats = asyncHandler(async (req, res, next) => {
+export const userStats = async (req, res, next) => {
   const allUsersCount = await User.countDocuments();
 
   const subscribedUsersCount = await User.countDocuments({
@@ -47,4 +46,4 @@ export const userStats = asyncHandler(async (req, res, next) => {
     allUsersCount,
     subscribedUsersCount,
   });
-});
+};
