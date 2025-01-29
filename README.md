@@ -35,6 +35,7 @@ A **feature-rich Learning Management System** designed to facilitate seamless on
 git clone https://github.com/yourusername/lms-project.git
 cd lms-project
 
+
 ### 🔹 Install dependencies
 bash
 Copy
@@ -42,6 +43,46 @@ Edit
 npm install
 cd client
 npm install
+
+🔹 Setup Environment Variables
+Create a .env file in the root directory and add:
+
+makefile
+Copy
+Edit
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+RAZORPAY_KEY_ID=your_razorpay_key
+RAZORPAY_SECRET=your_razorpay_secret
+
+
+🔹 Run the project
+Start the backend
+bash
+Copy
+Edit
+npm start
+Start the frontend
+bash
+Copy
+Edit
+cd client
+npm start
+
+📌 Future Enhancements
+🔹 Live Classes Integration using WebRTC
+🔹 Discussion Forums for student interactions
+🔹 Assignment & Quiz Modules
+
+🙌 Contributions
+Contributions are welcome! Fork the repo, make changes, and submit a pull request.
+
+📩 Contact
+For suggestions or collaboration, reach out via [https://www.linkedin.com/in/hemant-navlani-1a5a331b4/] or email hemant.navlani.0506@email.com.
+
+vbnet
+Copy
+Edit
 
 ### Setup Instruction
 
