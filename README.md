@@ -1,5 +1,48 @@
 # LMS Frontend
 
+# 🎓 Learning Management System (LMS)
+
+A **feature-rich Learning Management System** designed to facilitate seamless online learning experiences for students and instructors. Built with a **full-stack** approach using **React, Node.js, Express, and MongoDB**, this LMS supports secure payments, role-based authentication, and dynamic course management.
+
+## 🚀 Features
+✅ **User Authentication** – Secure login & role-based access (Students & Instructors)  
+✅ **Course Management** – Create, update, and delete courses  
+✅ **Payment Integration** – Secure transactions via **Razorpay API**  
+✅ **Progress Tracking** – Users can track their learning progress  
+✅ **Responsive UI** – Clean and modern interface with **Tailwind CSS**  
+✅ **Secure & Scalable** – Optimized for **performance and security**  
+
+## 🛠️ Tech Stack
+- **Frontend:** React, Tailwind CSS, DaisyUI  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Authentication:** JWT (JSON Web Tokens)  
+- **Payment Gateway:** Razorpay API  
+- **API Testing:** Postman  
+
+## 📸 Screenshots
+(Include relevant screenshots of the project here)
+
+## 🎯 Installation & Setup
+
+### 🔹 Prerequisites
+- Node.js installed  
+- MongoDB running locally or on **MongoDB Atlas**  
+- Razorpay account for payment integration  
+
+### 🔹 Clone the repository
+```bash
+git clone https://github.com/yourusername/lms-project.git
+cd lms-project
+
+### 🔹 Install dependencies
+bash
+Copy
+Edit
+npm install
+cd client
+npm install
+
 ### Setup Instruction
 
 
