@@ -31,9 +31,7 @@ A **feature-rich Learning Management System** designed to facilitate seamless on
 - Razorpay account for payment integration  
 
 ### 🔹 Clone the repository
-```bash
-git clone https://github.com/yourusername/lms-project.git
-cd lms-project
+```bash git clone https://github.com/yourusername/lms-project.git cd lms-project```
 
 
 ### 🔹 Install dependencies
